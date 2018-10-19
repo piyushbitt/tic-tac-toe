@@ -5,3 +5,5 @@ You can control the canvas using your keyboard up/down/left/right arrow keys and
 
 It's a simple enough game and whoever marks 3 tiles either vertically, horizontally or diagonally wins.
 
+It's good game.
+
