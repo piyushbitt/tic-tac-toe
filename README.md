@@ -1,4 +1,4 @@
-# tic-tac-toe
+# Tic-Tac-Toe
 Tic Tac Toe game made using DirectX, C++, Visual Studio where you can play with a different player or play against a computer.
 
 You can control the canvas using your keyboard up/down/left/right arrow keys and press enter to mark the position.
