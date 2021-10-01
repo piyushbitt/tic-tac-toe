@@ -50,6 +50,23 @@ bool KeyboardClient::EnterIsPressed() const
 	return server.enterIsPressed;
 }
 
+bool KeyboardClient::WIsPressed() const
+{
+	return server.wIsPressed;
+}
+bool KeyboardClient::SIsPressed() const
+{
+	return server.sIsPressed;
+}
+bool KeyboardClient::AIsPressed() const
+{
+	return server.aIsPressed;
+}
+bool KeyboardClient::DIsPressed() const
+{
+	return server.dIsPressed;
+}
+
 
 
 KeyboardServer::KeyboardServer()
@@ -58,7 +75,11 @@ KeyboardServer::KeyboardServer()
 	leftIsPressed( false ),
 	rightIsPressed( false ),
 	spaceIsPressed( false ),
-	enterIsPressed( false )
+	enterIsPressed( false ),
+	wIsPressed( false ),
+	sIsPressed(false ),
+	aIsPressed( false ),
+	dIsPresses( false ),
 {}
 
 void KeyboardServer::OnUpPressed()
@@ -76,6 +97,22 @@ void KeyboardServer::OnLeftPressed()
 void KeyboardServer::OnRightPressed()
 {
 	rightIsPressed = true;
+}
+void KeyboardServer::OnWPressed()
+{
+	wIsPressed = true;
+}
+void KeyboardServer::OnSPressed()
+{
+	sIsPressed = true;
+}
+void KeyboardServer::OnAPressed()
+{
+	aIsPressed = true;
+}
+void KeyboardServer::OnDPressed()
+{
+	dIsPressed = true;
 }
 void KeyboardServer::OnSpacePressed()
 {
