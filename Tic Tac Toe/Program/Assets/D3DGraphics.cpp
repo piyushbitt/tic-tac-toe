@@ -64,6 +64,18 @@ void D3DGraphics::PutPixel( int x,int y,int r,int g,int b )
 	pBackBuffer->Release();
 }
 
+void D3DGraphics::AddNewPixel( int x,int y,int r,int g,int b )
+{
+	IDirect3DSurface9* pBackBuffer = NULL;
+	D3DLOCKED_RECT rect;
+
+	pDevice->GetBackBuffer( 0,0,D3DBACKBUFFER_TYPE_MONO,&pBackBuffer );
+	pBackBuffer->LockRect( &rect,NULL,NULL );
+	((D3DCOLOR*)rect.pBits)[ x + (rect.Pitch >> 2) * y ] = D3DCOLOR_XRGB( r,g,b );
+	pBackBuffer->UnlockRect();
+	pBackBuffer->Release();
+}
+
 void D3DGraphics::BeginFrame()
 {
 	pDevice->Clear( 0,NULL,D3DCLEAR_TARGET,D3DCOLOR_XRGB(0,0,0),0.0f,0 );
@@ -117,6 +129,53 @@ void D3DGraphics::DrawLine(int x1, int y1, int x2, int y2,int r,int g,int bl)
 		}
 	}
 }
+
+void D3DGraphics::DrawUpdatedLine(int x1, int y1, int x2, int y2,int r,int g,int bl)
+{
+	int dx = x2 - x1;
+	int dy = y2 - y1;
+	if (abs(dy) > abs(dx))
+	{
+		if (y1 > y2)
+		{
+			int temp = y2;
+			y2 = y1;
+			y1 = temp;
+			temp = x2;
+			x2 = x1;
+			x1 = temp;
+		}
+		float m = (float)dx / (float)dy;
+		float b = x1 - m*y1;
+		for (int y = y1; y <= y2; y++)
+		{
+			int x = m*y + b + 0.5f;
+			PutPixel(x, y, r, g, bl);
+		}
+	}
+	else
+	{
+		if (x1 > x2)
+		{
+			int temp = x2;
+			x2 = x1;
+			x1 = temp;
+			temp = y2;
+			y2 = y1;
+			y1 = temp;
+		}
+		float m = (float)dy / (float)dx;
+		float b = y1 - m*x1;
+		for (int x = x1; x <= x2; x++)
+		{
+			int y = m*x + b+ 0.5f;
+			PutPixel(x, y, r, g, bl);
+
+		}
+	}
+}
+
+
 void D3DGraphics::DrawCircle(int cx, int cy, int rad, int r, int g, int b)
 {
 	float radSqr = rad*rad;
