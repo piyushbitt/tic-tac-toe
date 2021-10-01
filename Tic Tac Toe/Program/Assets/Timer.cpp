@@ -43,6 +43,12 @@ void Timer::StartWatch()
 	QueryPerformanceCounter( (LARGE_INTEGER*)&startCount );
 }
 
+void Timer::PauseWatch()
+{
+	watchPaused = false;
+	QueryPerformanceCounter( (LARGE_INTEGER*)&startCount );
+}
+
 float Timer::GetTimeMilli() const
 {
 	if( !watchStopped )
