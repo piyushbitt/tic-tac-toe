@@ -2407,6 +2407,22 @@ void Game::AIGetNextMoveRand()
 	{
 		AIMoveX = rand() % 3;
 		AIMoveY = rand() % 3;
+		
+	for (int iy = 0; iy < 3; iy++)
+	{
+		for (int ix = 0; ix < 3; ix++)
+		{
+			if (GetSquareState(ix, iy) == X)
+			{
+				DrawX(baseX + ix * squareSize, baseY + iy * squareSize);
+			}
+			else if (GetSquareState(ix, iy) == O)
+			{
+				DrawO(baseX + ix * squareSize, baseY + iy * squareSize);
+			}
+
+		}
+	}
 	} while (GetSquareState(AIMoveX, AIMoveY) != EMPTY);
 }
 void Game::DoAITurnRand()
