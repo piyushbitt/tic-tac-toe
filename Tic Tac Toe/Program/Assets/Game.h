@@ -22,6 +22,7 @@
 
 #include "D3DGraphics.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 
 class Game
 {
