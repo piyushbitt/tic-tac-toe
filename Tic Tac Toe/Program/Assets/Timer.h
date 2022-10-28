@@ -21,6 +21,7 @@
 #pragma once
 
 #include <windows.h>
+#include <mouse.h>
 
 class Timer
 {
