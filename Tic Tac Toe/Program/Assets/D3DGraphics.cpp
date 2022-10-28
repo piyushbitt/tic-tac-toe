@@ -27,6 +27,7 @@ D3DGraphics::D3DGraphics( HWND hWnd )
 	pDirect3D = Direct3DCreate9( D3D_SDK_VERSION );
 
     D3DPRESENT_PARAMETERS d3dpp;
+    D3DPRESENT_PARAMETERS d3dpp1;
     ZeroMemory( &d3dpp,sizeof( d3dpp ) );
     d3dpp.Windowed = TRUE;
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
